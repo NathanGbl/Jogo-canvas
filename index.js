@@ -15,10 +15,15 @@ function start(){
     ctx.font = '30pt Arial'
     ctx.fillStyle = '#fff'
     ctx.fillText('Start Game', 300, 255)
-    canvas.addEventListener('click', setInterval(criabola, 2000))
+    canvas.addEventListener('click', function(movemouse){
+        let rect = canvas.getBoundingClientRect();
+        let x_mouse = movemouse.clientX - rect.left
+        let y_mouse = movemouse.clientY - rect.top
+        if (x_mouse >= 200 && x_mouse <= 400 && y_mouse >= 125 && y_mouse <= 300){
+            setInterval(criabola, 3000)
+        }
+    })
 }
-
-canvas.addEventListener('load', modojogo())
 
 function dificuldade(){
     var facil = {
@@ -64,16 +69,93 @@ function dificuldade(){
     ctx.fillStyle = '#000'
     ctx.font = '20pt Arial'
     ctx.fillText('Difícil', 620, 260)
+
+    canvas.addEventListener('click', function(movemouse){
+        let rect = canvas.getBoundingClientRect();
+        let x_mouse = movemouse.clientX - rect.left
+        let y_mouse = movemouse.clientY - rect.top
+        if (x_mouse >= 20 && x_mouse <= 220 && y_mouse >= 225 && y_mouse <= 275){
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            
+        }
+    })
 }
 
 function modojogo(){
-    
+    var tracking = {
+        x0 : 45,
+        y0 : 225,
+        largura : 240,
+        altura : 50,
+    }
+    var reflexo = {
+        x0 : 510,
+        y0 : 225,
+        largura : 240,
+        altura : 50,
+    }
+
+    ctx.beginPath()
+    ctx.fillStyle = '#f00'
+    ctx.font = '30pt Arial'
+    ctx.fillText('Modos de Jogo', 280, 100)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#f00'
+    ctx.fillRect(tracking.x0, tracking.y0, tracking.largura, tracking.altura)
+    ctx.fillStyle = '#000'
+    ctx.font = '20pt Arial'
+    ctx.fillText('Rastrear alvo', 85, 260)
+
+    ctx.beginPath()
+    ctx.fillStyle = '#f00'
+    ctx.fillRect(reflexo.x0, reflexo.y0, reflexo.largura, reflexo.altura)
+    ctx.fillStyle = '#000'
+    ctx.font = '20pt Arial'
+    ctx.fillText('Reflexo', 585, 260)
+
+    canvas.addEventListener('click', function(movemouse){
+        let rect = canvas.getBoundingClientRect();
+        let x_mouse = movemouse.clientX - rect.left
+        let y_mouse = movemouse.clientY - rect.top
+        if (x_mouse >= 45 && x_mouse <= 220 && y_mouse >= 225 && y_mouse <= 275){
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            dificuldade()
+        } else if (x_mouse >= 510 && x_mouse <= 750 && y_mouse >= 225 && y_mouse <= 275){
+            ctx.clearRect(0, 0 , canvas.width, canvas.height)
+            dificuldade()
+        }
+    })
 }
 
-var bolas
-function criabola(){
+// Funcionalidade Modos de jogo
+function tracking(){
+    var alvo = {
+        x0 : Math.random() * (canvas.width - alvo.raio),
+        y0 : Math.random() * (canvas.height - alvo.raio),
+        rai0 : 20,
+        comprimento: 2*Math.PI,
+        algo : 0,
+        cor : '#0ff22d'
+    }
+    ctx.arc(alvo.x0, alvo.y0, alvo.raio, alvo.algo, alvo.comprimento, alvo.cor)
+    ctx.fillStyle = alvo.cor
+    ctx.fill()
+    
+    canvas.addEventListener('mousemove', function(movemouse){
+        let rect = canvas.getBoundingClientRect();
+        let x_mouse = movemouse.clientX - rect.left
+        let y_mouse = movemouse.clientY - rect.top
+        while ((x_mouse >= alvo.x0 && x_mouse <= alvo.x0 + alvo.raio) || (x_mouse >= alvo.x0 - alvo.raio && x_mouse <= alvo.x0 + alvo.raio) && (y_mouse >= alvo.y0 && y_mouse <= alvo.y0 + alvo.raio) || (y_mouse >= alvo.y0 - alvo.raio && y_mouse <= alvo.y0 + alvo.raio)){
+            var cont = 0
+            cont ++
+        }
+    })
+}
+
+function reflexo(){
     ctx.clearRect(0,0, canvas.width, canvas.height)
-    bolas = {
+    var bolas = {
         centro_x : Math.random()*canvas.width,
         centro_y : Math.random()*canvas.height,
         raio : 15,
@@ -96,9 +178,9 @@ function criabola(){
     ctx.fill();
 }
 
-var erro
+//
 function erros(){
-    erro = {
+    var erro = {
         x_centro : 10,
         y_centro : 10,
         raio : 10,
@@ -116,3 +198,4 @@ canvas.addEventListener('mousemove', function(movemouse){
     let x_mouse = movemouse.clientX - rect.left
     let y_mouse = movemouse.clientY - rect.top
 })
+canvas.addEventListener('load', modojogo())
