@@ -20,12 +20,12 @@ function start(){
         let x_mouse = movemouse.clientX - rect.left
         let y_mouse = movemouse.clientY - rect.top
         if (x_mouse >= 200 && x_mouse <= 400 && y_mouse >= 125 && y_mouse <= 300){
-            setInterval(criabola, 3000)
+            setInterval(reflexo, 3000)
         }
     })
 }
 
-function dificuldade(){
+function dificuldade(modojogo){
     var facil = {
         x0 : 20,
         y0 : 225,
@@ -74,10 +74,13 @@ function dificuldade(){
         let rect = canvas.getBoundingClientRect();
         let x_mouse = movemouse.clientX - rect.left
         let y_mouse = movemouse.clientY - rect.top
-        if (x_mouse >= 20 && x_mouse <= 220 && y_mouse >= 225 && y_mouse <= 275){
+        if (x_mouse >= 20 && x_mouse <= 220 && y_mouse >= 225 && y_mouse <= 275 && modojogo === 'reflexo'){
             ctx.clearRect(0, 0, canvas.width, canvas.height)
-            
-        }
+            setInterval(reflexo, 3000)
+        } else if (x_mouse >= 260 && x_mouse <= 610 && y_mouse >= 225 && y_mouse <= 275 && modojogo === 'reflexo'){
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            setInterval(reflexo, 2000)
+        } else if (x_mouse >= 260 && x_mouse <= 610 && y_mouse >= 225 && y_mouse <= 275 && modojogo === 'reflexo'){}
     })
 }
 
@@ -120,10 +123,10 @@ function modojogo(){
         let y_mouse = movemouse.clientY - rect.top
         if (x_mouse >= 45 && x_mouse <= 220 && y_mouse >= 225 && y_mouse <= 275){
             ctx.clearRect(0, 0, canvas.width, canvas.height)
-            dificuldade()
+            dificuldade('tracking')
         } else if (x_mouse >= 510 && x_mouse <= 750 && y_mouse >= 225 && y_mouse <= 275){
             ctx.clearRect(0, 0 , canvas.width, canvas.height)
-            dificuldade()
+            dificuldade('reflexo')
         }
     })
 }
