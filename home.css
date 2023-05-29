@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: rgb(149,210,210);
+    background: linear-gradient(328deg, rgba(149,210,210,1) 0%, rgba(25,0,255,1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    flex-direction: column;
+    font-family: 'Playfair', serif;
+    color: #fff;
+}
+header{
+    text-align: center;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+    font-size: 16pt;
+}
+.cabeca{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 16pt;
+}
+.ordem{
+    color: rgb(0, 255, 170);
+    font-size: 18pt;
+}
+.modos{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 500px;
+}
+.inicio, .rastrear, .reflexo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.links{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 400px;
+}
+.links a{
+    color: rgb(0, 255, 170);
+    text-decoration: none;
+}
+.links a:hover{
+    text-decoration: underline;
+    transform: scale(1.25, 1.5);
+    transition: 1s;
+}
+h2{
+    text-align: center;
+}
+ul{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    list-style-type: none;
+}
